@@ -5,8 +5,6 @@ import logo from './logo.png';
 import './style.css';
 import "react-select/dist/react-select.css";
 
-var thisApp;
-
 var options = [
   { value: 'most recent', label: 'Most Recent' },
   { value: 'collaboration', label: 'Collaboration' },
@@ -18,21 +16,23 @@ var options = [
 class App extends Component {  
   constructor(props) {
     super(props);
-    thisApp = this;
-    thisApp.state = {
-      value: "most recent"
+    this.state = {
+      value: "most recent",
+      children: "most recent" + "-thumbnails"
     };
-    //this.handleChange = this.handleChange.bind(this);
-    //this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleChange = this.handleChange.bind(this);
   };
 
-  updateState(val) {
+  handleChange(val) {
     console.log(val);
-    console.log(thisApp);
-    thisApp.setState({
-      value: val == null ? null : val.value
+
+    this.setState({
+      value: val == null ? null : val.value,
+      children: val == null ? null : val.value + "-thumbnails"
     });
-    //this.setValue({value:val.value});
+    
+    console.log(this);
+    console.log(this.props);
   }
 
   render() {
@@ -42,14 +42,17 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <h2>Dylan Han Photography</h2>
         </div>
-        <div>
+        <div className="App-select">
           <Select
             name="gallery-selector"
             value={this.state.value}
             options={options}
-            onChange={this.updateState}
+            onChange={this.handleChange}
           />
         </div> 
+        <div className="App-thumbnails">
+          {this.state.children}
+        </div>
       </div>
     );
   }

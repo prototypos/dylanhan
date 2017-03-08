@@ -5,7 +5,8 @@ import logo from './logo.png';
 import './style.css';
 import "react-select/dist/react-select.css";
 
-var options = [
+// should get the galleries dynamically
+var galleries = [
   { value: 'most recent', label: 'Most Recent' },
   { value: 'collaboration', label: 'Collaboration' },
   { value: 'self portrait', label: 'Self Portrait' },
@@ -18,7 +19,7 @@ class App extends Component {
     super(props);
     this.state = {
       value: "most recent",
-      children: "most recent" + "-thumbnails"
+      children: this.getThumbnails("most recent")
     };
     this.handleChange = this.handleChange.bind(this);
   };
@@ -28,11 +29,16 @@ class App extends Component {
 
     this.setState({
       value: val == null ? null : val.value,
-      children: val == null ? null : val.value + "-thumbnails"
+      children: val == null ? null : this.getThumbnails(val.value),
     });
     
     console.log(this);
     console.log(this.props);
+  }
+
+  // placeholder!!!
+  getThumbnails(val) {
+    return ([<Select key={val} value={val} options={galleries} />]);
   }
 
   render() {
@@ -46,7 +52,7 @@ class App extends Component {
           <Select
             name="gallery-selector"
             value={this.state.value}
-            options={options}
+            options={galleries}
             onChange={this.handleChange}
           />
         </div> 

@@ -5,6 +5,8 @@ import logo from './logo.png';
 import './style.css';
 import "react-select/dist/react-select.css";
 
+var thisApp;
+
 var options = [
   { value: 'most recent', label: 'Most Recent' },
   { value: 'collaboration', label: 'Collaboration' },
@@ -13,11 +15,26 @@ var options = [
   { value: 'genre', label: 'Genre' }
 ];
 
-function logChange(val) {
-  console.log("Selected: " + val);
-}
+class App extends Component {  
+  constructor(props) {
+    super(props);
+    thisApp = this;
+    thisApp.state = {
+      value: "most recent"
+    };
+    //this.handleChange = this.handleChange.bind(this);
+    //this.handleSubmit = this.handleSubmit.bind(this);
+  };
 
-class App extends Component {
+  updateState(val) {
+    console.log(val);
+    console.log(thisApp);
+    thisApp.setState({
+      value: val == null ? null : val.value
+    });
+    //this.setValue({value:val.value});
+  }
+
   render() {
     return (
       <div className="App">
@@ -28,9 +45,9 @@ class App extends Component {
         <div>
           <Select
             name="gallery-selector"
-            value="most recent"
+            value={this.state.value}
             options={options}
-            onChange={logChange}
+            onChange={this.updateState}
           />
         </div> 
       </div>

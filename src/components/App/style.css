@@ -18,10 +18,9 @@
   font-size: large;
 }
 
-.Select {
-
+.App-thumbnails {
+  opacity: 0.99;
 }
-
 /*
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }

@@ -96,9 +96,10 @@ class App extends Component {
         });
       }
     });
-}
+  }
 
-getGrid() {
+  getGrid() {
+    console.log(thumbnails);
     return (
       <PerfectGrid
         items={thumbnails}

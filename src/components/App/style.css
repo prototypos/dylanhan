@@ -20,6 +20,12 @@
 
 .App-thumbnails {
   opacity: 0.99;
+  overflow-y: scroll;
+  position: absolute;
+  left: 0;
+  width: 100%;
+  top: 250px;
+  bottom: 0;
 }
 /*
 @keyframes App-logo-spin {

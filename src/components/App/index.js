@@ -91,33 +91,18 @@ class App extends Component {
         $.each(response.photoset.photo, function( index, value ) {
           images.push({
             src: "https://farm"+value.farm+".staticflickr.com/"+value.server+"/"+value.id+"_"+value.secret+"_b.jpg",
-            thumbnail: "https://farm"+value.farm+".staticflickr.com/"+value.server+"/"+value.id+"_"+value.secret+"_n.jpg"
+            thumbnail: "https://farm"+value.farm+".staticflickr.com/"+value.server+"/"+value.id+"_"+value.secret+"_n.jpg",
+            thumbnailHeight: 320,
+            thumbnailWidth: 320
+    
           });
         });
-
-        console.log(images);
 
         thisApp.setState({
           images: images
         });
       }
     });
-  }
-  
-  openLightbox() {
-        thisApp.setState({ isOpen: true });
-  }
-  
-  closeLightbox() {
-        thisApp.setState({ isOpen: false });
-  }
-    
-  moveNext() {
-        thisApp.setState({ index: (this.state.index + 1) % images.length });
-  }
-    
-  movePrev() {
-        thisApp.setState({ index: (this.state.index + images.length - 1) % images.length });
   }
 
   render() {

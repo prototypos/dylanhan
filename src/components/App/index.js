@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
-import PerfectGrid from 'react-perfect-grid'
 import Select from 'react-select';
+import 'react-select/dist/react-select.css';
+import Gallery from 'react-grid-gallery';
+import $ from 'jquery'; 
 
 import logo from './logo.png';
 import './style.css';
-import "react-select/dist/react-select.css";
-
-import $ from 'jquery'; 
 
 var thisApp;
 
@@ -21,8 +20,8 @@ var albums = [
 */
 ];
 
-// will get the thumbnails dyamically
-var thumbnails = [
+// will get the images dyamically
+var images = [
 /*
   {
     url: 'http://files1.porsche.com/filestore/image/multimedia/none/jdp-2016-modelseries-911carrera-editorial-l/normal/3fd16db8-39b8-11e5-8c35-0019999cd470;sL/porsche-normal.jpg',
@@ -38,10 +37,14 @@ class App extends Component {
     super(props);
 
     thisApp = this;
+
+    this.index = 0;
+    this.isOpen = false;
+
     this.state = {
       value: null,
       albums: albums,
-      grid: null
+      images: images
     };
     this.handleChange = this.handleChange.bind(this);
 
@@ -60,7 +63,7 @@ class App extends Component {
         thisApp.setState({
           value: albums[0].value
         });
-        thisApp.setGrid(albums[0].value);
+        thisApp.setImages(albums[0].value);
       }
     });
 
@@ -73,10 +76,10 @@ class App extends Component {
       value: val == null ? null : val.value,
     });
     
-    this.setGrid(val == null ? null : val.value);
+    this.setImages(val == null ? null : val.value);
   }
 
-  setGrid(val) {
+  setImages(val) {
     console.log(val);
 
     $.ajax( {
@@ -84,33 +87,42 @@ class App extends Component {
       type: 'GET',
       success: function( response ) {
         console.log(response);
-        thumbnails = [];
+        images = [];
         $.each(response.photoset.photo, function( index, value ) {
-          thumbnails.push({
-            url: "https://farm"+value.farm+".staticflickr.com/"+value.server+"/"+value.id+"_"+value.secret+"_m.jpg",
-            link: "https://farm"+value.farm+".staticflickr.com/"+value.server+"/"+value.id+"_"+value.secret+"_b.jpg",
+          images.push({
+            src: "https://farm"+value.farm+".staticflickr.com/"+value.server+"/"+value.id+"_"+value.secret+"_b.jpg",
+            thumbnail: "https://farm"+value.farm+".staticflickr.com/"+value.server+"/"+value.id+"_"+value.secret+"_n.jpg"
           });
         });
+
+        console.log(images);
+
         thisApp.setState({
-          grid: thisApp.getGrid()
+          images: images
         });
       }
     });
   }
-
-  getGrid() {
-    console.log(thumbnails);
-    return (
-      <PerfectGrid
-        items={thumbnails}
-        maxHeight={300}  // maximum height of row
-        margins={20}     // margins in pixels
-        order={true}     // keep images order or not
-      />
-    );
+  
+  openLightbox() {
+        thisApp.setState({ isOpen: true });
+  }
+  
+  closeLightbox() {
+        thisApp.setState({ isOpen: false });
+  }
+    
+  moveNext() {
+        thisApp.setState({ index: (this.state.index + 1) % images.length });
+  }
+    
+  movePrev() {
+        thisApp.setState({ index: (this.state.index + images.length - 1) % images.length });
   }
 
   render() {
+    console.log("render()");
+
     return (
       <div className="App">
         <div className="App-header">
@@ -125,8 +137,8 @@ class App extends Component {
             onChange={this.handleChange}
           />
         </div> 
-        <div className="App-thumbnails">
-          {this.state.grid}
+        <div className="App-images">
+          <Gallery images={this.state.images}/>
         </div>
       </div>
     );

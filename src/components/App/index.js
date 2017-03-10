@@ -101,6 +101,7 @@ class App extends Component {
         thisApp.setState({
           images: images
         });
+        setTimeout( function() {$(".App-images").scrollTop(0)}, 200 );
       }
     });
   }

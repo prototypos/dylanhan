@@ -91,9 +91,9 @@ class App extends Component {
         $.each(response.photoset.photo, function( index, value ) {
           images.push({
             src: "https://farm"+value.farm+".staticflickr.com/"+value.server+"/"+value.id+"_"+value.secret+"_b.jpg",
-            thumbnail: "https://farm"+value.farm+".staticflickr.com/"+value.server+"/"+value.id+"_"+value.secret+"_n.jpg",
-            thumbnailHeight: 320,
-            thumbnailWidth: 320
+            thumbnail: "https://farm"+value.farm+".staticflickr.com/"+value.server+"/"+value.id+"_"+value.secret+"_q.jpg",
+            thumbnailHeight: 150,
+            thumbnailWidth: 150
     
           });
         });

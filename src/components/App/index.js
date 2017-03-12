@@ -11,25 +11,10 @@ var thisApp;
 
 // will get the galleries dynamically
 var albums = [
-/*
-  { value: 'most recent', label: 'Most Recent' },
-  { value: 'collaboration', label: 'Collaboration' },
-  { value: 'self portrait', label: 'Self Portrait' },
-  { value: 'moment', label: 'Moment' },
-  { value: 'genre', label: 'Genre' }
-*/
 ];
 
 // will get the images dyamically
 var images = [
-/*
-  {
-    url: 'http://files1.porsche.com/filestore/image/multimedia/none/jdp-2016-modelseries-911carrera-editorial-l/normal/3fd16db8-39b8-11e5-8c35-0019999cd470;sL/porsche-normal.jpg',
-    link: 'http://files1.porsche.com/filestore/image/multimedia/none/jdp-2016-modelseries-911carrera-editorial-l/normal/3fd16db8-39b8-11e5-8c35-0019999cd470;sL/porsche-normal.jpg'
-  },
-  { url: 'http://files2.porsche.com/filestore/image/multimedia/none/jdp-2016-modelseries-911carrera-editorial-xl/normal/fde0b87d-3452-11e5-8c35-0019999cd470;sE/porsche-normal.jpg' },
-  { url: 'http://files3.porsche.com/filestore/image/multimedia/none/jdp-2016-991-2nd-c2-modelimage-key-features/normal/95bef184-905e-11e6-9f1b-0019999cd470/porsche-normal.jpg' }
-*/
 ];
 
 class App extends Component {  

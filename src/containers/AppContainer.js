@@ -1,6 +1,7 @@
 import AppView from '../views/AppView';
 import {Container} from 'flux/utils';
 import GalleryStore from '../stores/GalleryStore';
+import GalleryActions from '../actions/GalleryActions';
 
 function getStores() {
   return [
@@ -9,8 +10,12 @@ function getStores() {
 }
 
 function getState() {
+  console.log("AppContainer.getState()");
+
   return {
-    gallery: GalleryStore.getState(),
+  	value: GalleryStore.getState().value,
+    images: GalleryStore.getState().images,
+    onChangeGallery: GalleryActions.changeGallery
   };
 }
 

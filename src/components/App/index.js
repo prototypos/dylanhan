@@ -3,33 +3,38 @@ import Select from 'react-select';
 import 'react-select/dist/react-select.css';
 import Gallery from 'react-grid-gallery';
 import $ from 'jquery'; 
+import GalleryActions from '../../actions/GalleryActions';
 
 import logo from './logo.png';
 import './style.css';
 
 var thisApp;
 
+var albumId;
+
 // will get the galleries dynamically
 var albums = [
 ];
 
-// will get the images dyamically
-var images = [
+// will get the photos dyamically
+var photos = [
 ];
 
 class App extends Component {  
   constructor(props) {
     super(props);
 
-    thisApp = this;
+    console.log("App.constructor()...");
+    console.log(props);
 
+    thisApp = this;
     this.index = 0;
     this.isOpen = false;
 
     this.state = {
       value: null,
-      albums: albums,
-      images: images
+      options: albums,
+      images: photos
     };
     this.handleChange = this.handleChange.bind(this);
 
@@ -43,7 +48,7 @@ class App extends Component {
           albums.push({value: value.id, label: value.title._content});
         });
         thisApp.setState({
-          albums: albums
+          options: albums
         });
         thisApp.setState({
           value: albums[0].value
@@ -56,25 +61,25 @@ class App extends Component {
 
   handleChange(val) {
     console.log(val);
-
+/*
     this.setState({
       value: val == null ? null : val.value,
     });
-    
+*/
     this.setImages(val == null ? null : val.value);
   }
 
   setImages(val) {
-    console.log(val);
+    albumId = val;
 
     $.ajax( {
       url: 'https://api.flickr.com/services/rest/?method=flickr.photosets.getPhotos&api_key=1dbeb8547f8b9ca8f1ec6fd24df973f1&user_id=57788567@N00&format=json&nojsoncallback=1& photoset_id=' + val,
       type: 'GET',
       success: function( response ) {
         console.log(response);
-        images = [];
+        photos = [];
         $.each(response.photoset.photo, function( index, value ) {
-          images.push({
+          photos.push({
             src: "https://farm"+value.farm+".staticflickr.com/"+value.server+"/"+value.id+"_"+value.secret+"_b.jpg",
             thumbnail: "https://farm"+value.farm+".staticflickr.com/"+value.server+"/"+value.id+"_"+value.secret+"_q.jpg",
             thumbnailHeight: 150,
@@ -82,11 +87,13 @@ class App extends Component {
     
           });
         });
-
+/*
         thisApp.setState({
-          images: images
+          images: photos
         });
-        setTimeout( function() {$(".App-images").scrollTop(0)}, 200 );
+*/
+        GalleryActions.changeGallery(albumId, photos);
+        setTimeout( function() {$(".App-photos").scrollTop(0)}, 200 );
       }
     });
   }
@@ -103,13 +110,13 @@ class App extends Component {
         <div className="App-select">
           <Select
             name="select"
-            value={this.state.value}
-            options={this.state.albums}
+            value={this.props.value}
+            options={this.state.options}
             onChange={this.handleChange}
           />
         </div> 
-        <div className="App-images">
-          <Gallery images={this.state.images}/>
+        <div className="App-photos">
+          <Gallery images={this.props.images}/>
         </div>
       </div>
     );

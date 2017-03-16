@@ -1,25 +1,25 @@
 // import Immutable from 'immutable';
 import {ReduceStore} from 'flux/utils';
-import GalleryActionTypes from '../actions//GalleryActionTypes';
+import AlbumsActionTypes from '../actions//AlbumsActionTypes';
 import AppDispatcher from '../dispatchers/AppDispatcher';
 
-class GalleryStore extends ReduceStore {
+class AlbumsStore extends ReduceStore {
   constructor() {
     super(AppDispatcher);
   }
 
   getInitialState() {
-    return { "value": null, "images":[]};
+    return { "options": null };
   }
 
   reduce(state, action) {
     switch (action.type) {
-      case GalleryActionTypes.CHANGE_GALLERY:
-        console.log("GalleryStore: reduce()...");
+      case AlbumsActionTypes.GET_ALBUMS:
+        console.log("AlbumsStore: reduce()...");
         console.log(state);
         console.log(action);
 
-        return {  "value": action.albumId, "images": action.photos };
+        return { "options": action.albums };
 
       default:
         return state;
@@ -27,4 +27,4 @@ class GalleryStore extends ReduceStore {
   }
 }
 
-export default new GalleryStore();
+export default new AlbumsStore();

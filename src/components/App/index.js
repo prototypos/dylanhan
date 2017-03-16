@@ -3,6 +3,7 @@ import Select from 'react-select';
 import 'react-select/dist/react-select.css';
 import Gallery from 'react-grid-gallery';
 import $ from 'jquery'; 
+import AlbumsActions from '../../actions/AlbumsActions';
 import GalleryActions from '../../actions/GalleryActions';
 
 import logo from './logo.png';
@@ -47,12 +48,15 @@ class App extends Component {
         $.each(response.photosets.photoset, function( index, value ) {
           albums.push({value: value.id, label: value.title._content});
         });
+/*
         thisApp.setState({
           options: albums
         });
         thisApp.setState({
           value: albums[0].value
         });
+*/
+        AlbumsActions.getAlbums(albums);
         thisApp.setImages(albums[0].value);
       }
     });
@@ -111,7 +115,7 @@ class App extends Component {
           <Select
             name="select"
             value={this.props.value}
-            options={this.state.options}
+            options={this.props.options}
             onChange={this.handleChange}
           />
         </div> 

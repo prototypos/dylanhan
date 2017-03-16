@@ -1,11 +1,9 @@
 import GalleryActionTypes from './GalleryActionTypes';
-import GalleryDispatcher from '../dispatchers/GalleryDispatcher';
+import AppDispatcher from '../dispatchers/AppDispatcher';
 
 const Actions = {
   changeGallery(albumId, photos) {
-  	console.log("GalleryActions: GalleryDispatcher.dispatch(type: GalleryAtionTypes.CHANGE_GALLERY, " + albumId + ")...");
-
-    GalleryDispatcher.dispatch({
+    AppDispatcher.dispatch({
       type: GalleryActionTypes.CHANGE_GALLERY,
       albumId,
       photos

@@ -35,10 +35,6 @@ const Actions = {
   			console.log("AlbumActions.getAlbums: GalleryActions.changeGallery()");
     		GalleryActions.changeGallery(albumId);
     	}
-/* 
-        AlbumsActions.getAlbums(albums);
-        thisApp.setImages(albums[0].value);
-*/
       }
     });
 

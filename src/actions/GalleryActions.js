@@ -27,7 +27,7 @@ const Actions = {
     
           });
         });
-  		console.log("GalleryActions.changeGallery: dispatch(CHANGE_GALLERY)");
+  		console.log("GalleryActions.changeGallery: dispatch(SET_GALLERY)");
     	AppDispatcher.dispatch({
       		type: GalleryActionTypes.SET_GALLERY,
       		albumId,

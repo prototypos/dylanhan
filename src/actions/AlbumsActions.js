@@ -33,7 +33,7 @@ const Actions = {
     		var albumId = albums[0].value;
 
   			console.log("AlbumActions.getAlbums: GalleryActions.changeGallery()");
-    		GalleryActions.changeGallery(albumId);
+    		GalleryActions.changeGallery({"value": albumId});
     	}
       }
     });

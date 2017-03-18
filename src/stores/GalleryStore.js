@@ -13,12 +13,15 @@ class GalleryStore extends ReduceStore {
   }
 
   reduce(state, action) {
+    console.log("GalleryStore: reduce()...");
+    console.log(state);
+    console.log(action);
+
     switch (action.type) {
       case GalleryActionTypes.CHANGE_GALLERY:
-        console.log("GalleryStore: reduce()...");
-        console.log(state);
-        console.log(action);
+        return {  "value": action.albumId, "images": [] };
 
+      case GalleryActionTypes.SET_GALLERY:
         return {  "value": action.albumId, "images": action.photos };
 
       default:

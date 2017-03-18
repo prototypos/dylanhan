@@ -2,13 +2,13 @@ import React, { Component } from 'react';
 import Select from 'react-select';
 import 'react-select/dist/react-select.css';
 import Gallery from 'react-grid-gallery';
-import $ from 'jquery'; 
+//import $ from 'jquery'; 
 import AlbumsActions from '../../actions/AlbumsActions';
-import GalleryActions from '../../actions/GalleryActions';
+//import GalleryActions from '../../actions/GalleryActions';
 
 import logo from './logo.png';
 import './style.css';
-
+/*
 var thisApp;
 
 var albumId;
@@ -20,25 +20,19 @@ var albums = [
 // will get the photos dyamically
 var photos = [
 ];
-
+*/
 class App extends Component {  
   constructor(props) {
     super(props);
 
-    console.log("App.constructor()...");
-    console.log(props);
-
-    thisApp = this;
+    //thisApp = this;
     this.index = 0;
     this.isOpen = false;
 
-    this.state = {
-      value: null,
-      options: albums,
-      images: photos
-    };
     this.handleChange = this.handleChange.bind(this);
 
+    AlbumsActions.getAlbums();
+/*
     // get the albums...
     $.ajax( {
       url: 'https://api.flickr.com/services/rest/?method=flickr.photosets.getList&api_key=1dbeb8547f8b9ca8f1ec6fd24df973f1&user_id=57788567@N00&format=json&nojsoncallback=1',
@@ -48,31 +42,19 @@ class App extends Component {
         $.each(response.photosets.photoset, function( index, value ) {
           albums.push({value: value.id, label: value.title._content});
         });
-/*
-        thisApp.setState({
-          options: albums
-        });
-        thisApp.setState({
-          value: albums[0].value
-        });
-*/
         AlbumsActions.getAlbums(albums);
         thisApp.setImages(albums[0].value);
       }
     });
-
+*/
   };
 
   handleChange(val) {
-    console.log(val);
-/*
-    this.setState({
-      value: val == null ? null : val.value,
-    });
-*/
-    this.setImages(val == null ? null : val.value);
+    console.log("handleChange(" + val.value + ")");
+    this.props.onChangeGallery(val.value);
+    // this.setImages(val == null ? null : val.value);
   }
-
+/*
   setImages(val) {
     albumId = val;
 
@@ -91,17 +73,12 @@ class App extends Component {
     
           });
         });
-/*
-        thisApp.setState({
-          images: photos
-        });
-*/
         GalleryActions.changeGallery(albumId, photos);
         setTimeout( function() {$(".App-photos").scrollTop(0)}, 200 );
       }
     });
   }
-
+*/
   render() {
     console.log("render()");
 

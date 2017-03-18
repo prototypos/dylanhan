@@ -13,14 +13,17 @@ class AlbumsStore extends ReduceStore {
   }
 
   reduce(state, action) {
+    console.log("AlbumsStore: reduce()...");
+    console.log(state);
+    console.log(action);
+  
     switch (action.type) {
       case AlbumsActionTypes.GET_ALBUMS:
-        console.log("AlbumsStore: reduce()...");
-        console.log(state);
-        console.log(action);
+        return state;
 
+      case AlbumsActionTypes.SET_ALBUMS:
         return { "options": action.albums };
-
+        
       default:
         return state;
     }

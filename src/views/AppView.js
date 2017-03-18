@@ -3,8 +3,6 @@ import Select from 'react-select';
 import 'react-select/dist/react-select.css';
 import Gallery from 'react-grid-gallery';
 
-import $ from 'jquery';
-
 import '../index.css';
 import logo from './logo.png';
 import './style.css';
@@ -25,7 +23,7 @@ function AppView(props) {
           />
         </div> 
         <div className="App-photos">
-          <Gallery images={setTimeout( function() {$(".App-photos").scrollTop(0)}, 200 ), props.images}/>
+          <Gallery images={props.images}/>
         </div>
       </div>
     );

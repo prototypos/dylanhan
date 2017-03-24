@@ -20,7 +20,7 @@ function AppView(props) {
       <div className="App">
         <div className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
-          <h2>Dylan Han Photography</h2>
+          <h3>Dylan Han Photography</h3>
           <select name="select" value={props.value} onChange={props.onChangeGallery}>
             {options}
           </select>        

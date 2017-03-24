@@ -28,9 +28,10 @@
   bottom: 0;
 }
 
-h2 {
-  margin: 16px ;
+h3 {
+  margin-top:14px;
 }
+
 select {
   color: #fff;
   width: 140px;

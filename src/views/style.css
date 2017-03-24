@@ -24,22 +24,30 @@
   position: absolute;
   left: 0;
   width: 100%;
-  top: 230px;
+  top: 192px;
   bottom: 0;
 }
 
-select {
-   background: #222;
-   color: #eee;
-   width: 140px;
-   padding: 2px;
-   font-size: 16px;
-   line-height: 1;
-   border: 1px;
-   border-radius: 0;
-   height: 34px;
+h2 {
+  margin: 16px ;
 }
-
+select {
+  color: #fff;
+  width: 140px;
+  font-size: 14px;
+  padding: 10px 0 10px 10px;
+  border: 0 !important;
+  /* needed */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  /* SVG background image */
+  background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100' fill='%238C98F2'><polygon points='0,0 100,0 50,50'/></svg>") no-repeat;
+  background-size: 12px;
+  background-position: calc(100% - 15px) 17px;
+  background-repeat: no-repeat;
+  background-color: #222;
+}
 select:focus {
   outline:none;
 }

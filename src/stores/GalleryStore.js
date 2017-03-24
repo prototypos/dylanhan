@@ -9,7 +9,7 @@ class GalleryStore extends ReduceStore {
   }
 
   getInitialState() {
-    return { "value": null, "images":[]};
+    return { "value": "", "images":[]};
   }
 
   reduce(state, action) {

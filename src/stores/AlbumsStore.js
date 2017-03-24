@@ -9,7 +9,7 @@ class AlbumsStore extends ReduceStore {
   }
 
   getInitialState() {
-    return { "options": null };
+    return { "options": [] };
   }
 
   reduce(state, action) {

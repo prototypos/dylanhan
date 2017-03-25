@@ -3,12 +3,10 @@ import AppDispatcher from '../dispatchers/AppDispatcher';
 import $ from 'jquery';
 
 const Actions = {
-  changeGallery(evt) {
+  changeGallery(albumId) {
     console.log("GalleryActions.changeGallery()...");
-    console.log(evt.target.value);
+    console.log(albumId);
 
-    var albumId = evt.target.value;
-    
   	console.log("GalleryActions.changeGallery: dispatch(CHANGE_GALLERY)");
     AppDispatcher.dispatch({
       type: GalleryActionTypes.CHANGE_GALLERY,
